@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/bootstrap.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6 mt-5">
+                <h2 class="alert alert-success text-center" role="alert">Add new student</h2>
+                <form action="" method="post">
+                    <div class="mb-3">
+                        <label for="name" class="form-label">Name</label>
+                        <input type="text" id="name" class="form-control" name="name" placeholder="required"/>
+                    </div>
+                    <div class="mb-3">
+                        <label for="age" class="form-label">Age</label>
+                        <input type="text" id="age" class="form-control" name="age" placeholder="10-40"/>
+                    </div>
+                    <div class="mb-3">
+                        <label for="fees" class="form-label">Fees</label>
+                        <input type="text" id="fees" class="form-control" name="fees" placeholder=">= 4999.9"/>
+                    </div>
+                    <button class="btn btn-primary">
+                        Submit
+                    </button>
+                </form>
+            </div>
+            <div class="col-sm-6 mt-5">
+                <h2 class="alert alert-success text-center " role="alert">List of student</h2>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">No</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Age</th>
+                            <th scope="col">Fees</th>
+                            <th scope="col">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% var i = 1; %>
+                        <% data.forEach((item)=>{ %>
+                            <tr>
+                                <td><%= i++ %></td>
+                                <td><%= item.name %></td>
+                                <td><%= item.age %></td>
+                                <td><%= item.fees %></td>
+                                <td>
+                                    <form action="/student/edit/<%= item._id %>" method="get" class="d-inline">
+                                        <button class="btn d-inline" type="submit">
+                                            <i class="fa-solid fa-pen-to-square text-info"></i>
+                                        </button>
+                                    </form>
+                                    <form action="/student/delete/<%= item._id %>" method="post" class="d-inline">
+                                        <button class="btn d-inline" type="submit">
+                                            <i class="fa-solid fa-trash text-danger"></i>
+                                        </button>
+                                    </form>
+                                </td>
+                            </tr>
+                        <% }) %>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <script src="/js/bootstrap.bundle.js"></script>
+    <script src="https://kit.fontawesome.com/e52f88424e.js" crossorigin="anonymous"></script>
+</body>
+
+</html>
